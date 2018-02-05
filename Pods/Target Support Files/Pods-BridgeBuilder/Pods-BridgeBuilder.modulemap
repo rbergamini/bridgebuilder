@@ -1,0 +1,6 @@
+framework module Pods_BridgeBuilder {
+  umbrella header "Pods-BridgeBuilder-umbrella.h"
+
+  export *
+  module * { export * }
+}

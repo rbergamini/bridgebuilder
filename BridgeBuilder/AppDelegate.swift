@@ -8,14 +8,41 @@
 
 import UIKit
 
+
+protocol DatabaseProtocol
+{
+    func signIn(withEmail email: String, password pword: String, successResponse: @escaping (Profile) -> (), errorResponse: @escaping (Error) -> ())
+    func logOut()
+    func fetchConnections(forUser user: Profile, forEachCompletion: @escaping (Connection) -> ())
+    func addProfile(_ profile: Profile) -> Profile
+    func addConnection(_ connection: Connection) -> Connection
+    func getOrMakeOldConnection(with profile: Profile,  completion: @escaping (Connection) -> (), errorResponse: @escaping (Error) -> ())
+    func fetchProfile(fromEmail email: String, successResponse: @escaping (Profile) -> (), errorResponse: @escaping (Error) -> ())
+    var currentUser: Profile? {get}
+}
+
+var database: DatabaseProtocol?
+
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+  
     var window: UIWindow?
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        database = UTDatabase()
+        
+        let introScreenViewController = IntroScreenViewController()
+        
+        if let window = self.window
+        {
+            window.rootViewController = introScreenViewController
+            window.makeKeyAndVisible()
+        }
+        
         return true
     }
 

@@ -8,6 +8,11 @@
 
 import UIKit
 
+import Firebase
+import FirebaseAuthUI
+import FirebaseGoogleAuthUI
+import FirebaseFacebookAuthUI
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -20,6 +25,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    /*
+    func authUI(authUI: FIRAuthUI, didSignInWithUser user: FIRUser?, error: NSError?)
+    {
+        
+    }*/
+    
 }
 
